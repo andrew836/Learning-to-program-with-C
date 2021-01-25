@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/* My attempt at the Linux command-line tool Echo. */
+
+int main(int argc, char *argv[])
+{
+
+  if (argc < 2) {
+    printf("Insufficient arguments...\n");
+    exit(1);
+  }
+
+  while (*++argv != NULL) 
+    printf("%s ", *argv);
+    
+  
+  printf("\n");
+  return 0;
+}
