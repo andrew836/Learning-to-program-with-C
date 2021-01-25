@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+/* Exercise 5-3. Write a pointer version of the function strcat that we showed in Chapter 2.   	
+ * Strcat(s,t) copies the string t to the end of s.
+ */
+
+char strCat(char *s, char *t);
+
+int main(int argc, char *argv[])
+{
+
+  if (argc < 3){
+    printf("Insufficient args...\n");
+    return 0;
+  }
+
+  strCat(argv[1], argv[2]);
+ 
+  return 0;
+}
+
+
+char strCat(char *s, char *t)
+{
+  
+  for (int i = 0; i < s[i]; i++)
+    printf("%c", s[i]);
+    for (int j = 0; j < t[j]; j++)
+      printf("%c", t[j]);
+
+  printf("\n");
+}
