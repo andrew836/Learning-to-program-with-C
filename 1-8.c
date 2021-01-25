@@ -1,14 +1,12 @@
 #include <stdio.h>
 
 
-/* Exercise 1-8 from K&R: The C Programming Language. Write a program to count   * spaces, tabs, and newlines. Use ctrl+d to terminate the program and show 
+/* Exercise 1-8 from K&R: The C Programming Language. Write a program to count spaces, tabs, and newlines. Use ctrl+d to terminate the program and show 
  * results.
  */
 
-
 int main(void) {
 
-  
     int c, x, y, z;
     c = x = y = z = 0;
 
