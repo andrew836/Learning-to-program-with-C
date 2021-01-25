@@ -1,0 +1,40 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <pwd.h>
+#include <stdlib.h>
+
+
+/* This program returns the UID of the username input at the command-line
+ * at the time of invocation.
+ */ 
+
+
+// Function prototype for converting user 'name' to user ID.
+uid_t user_id(const char *name);
+
+// Main.
+int main(int argc, char *argv[])
+{
+
+  printf("%d\n", user_id(argv[1])); 	  
+
+  return 0;
+}	
+
+// Function for converting user 'name' to user ID.
+uid_t user_id(const char *name) { 
+  struct passwd *pwd;
+  uid_t u;
+  char *endptr;
+  
+    u = strtol(name, &endptr, 10);
+    if (*endptr == '\0')
+      return u;
+
+    pwd = getpwnam(name);
+    if (pwd == NULL)
+      return -1;
+
+    return pwd->pw_uid;
+
+}
