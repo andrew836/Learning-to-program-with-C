@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+/* This program requires two filenames be specified at the time of invocation. The two files are then compared and        
+ * declared as either 'equal' or 'not equal'. 
+ */
+
+
+int main(int argc, char *argv[])
+{
+
+  if (argc < 2) {
+    fprintf(stderr, "Insufficient args...\n");
+    exit(1);
+  }
+
+  FILE *ifp;
+  ifp = fopen(argv[1], "r+");   
+ 
+  if (ifp == NULL) {
+    fprintf(stderr, "Unable to access file...\n");
+    exit(2);
+  }
+
+  fseek(ifp, 0, SEEK_END);
+  char ifp_Size = ftell(ifp);
+  rewind(ifp);  
+
+  char *ifp_Str = malloc(sizeof(char) * ifp_Size);
+  size_t charSize = sizeof(char);
+
+   fread(ifp_Str, charSize, ifp_Size, ifp);
+ 
+  FILE *ofp;
+  ofp = fopen(argv[2], "rw");
+  
+  fseek(ofp, 0, SEEK_END);
+  char ofp_Size = ftell(ofp);
+  rewind(ofp);
+
+  char *ofp_Str = malloc(sizeof(char) * ofp_Size);
+  while (fread(ofp_Str, charSize, ofp_Size, ofp) != '\0' && fread(ofp_Str, charSize, ofp_Size, ofp) != EOF) {
+    if (strcmp(ifp_Str, ofp_Str) == 0) 
+      fprintf(stdout, "Equal\n");
+    else
+      fprintf(stdout, "Not equal\n");
+  }
+  
+  free(ifp_Str);
+  free(ofp_Str);
+  fclose(ifp);
+  fclose(ofp);
+
+  return 0;
+}
