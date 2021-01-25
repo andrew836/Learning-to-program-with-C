@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*  Exercise 2-4. Write an alternate version of squeeze (s1,s2) that deletes each character    	
+ *  in s1 that matches any character in the string s2.
+ */
+
+int main(int argc, char *argv[])
+{
+
+  if (argc > 3)
+  {
+    printf("Invalid argument count...\n");
+    return 0;
+  }
+
+  char s_ONE[sizeof(argv[1])];
+  int i;
+  char space = ' ';
+
+  for (i = 0; i < 5; i++)
+    if (argv[1][i] == argv[2][i])
+      argv[1][i] = space;
+      printf("%s\n", argv[1]);
+
+
+  return 0;
+}
